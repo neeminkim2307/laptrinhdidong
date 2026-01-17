@@ -3,4 +3,4 @@
 ## **Lớp: D18CNPM4
 
 DEMO:
-<img src="../screenshots/bai-tap-2.jpg" width=200>
+<img src="../screenshots/bai-tap-3.1.jpg" width=200>
