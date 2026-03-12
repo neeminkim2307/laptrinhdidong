@@ -4,4 +4,5 @@
 ## **bai-tap-4.1: Tạo button hello
 ## **bai-tap-4.2: Tạo ba khối styling
 ## **bai-tap-4.2: validate
-## **bai-ktra1.Figma
+## **bai-ktra1: Figma
+## **bai-tap-8.1.Context API
