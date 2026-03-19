@@ -6,4 +6,5 @@
 ## **bai-tap-4.2: validate
 ## **bai-ktra1: Figma
 ## **bai-tap-8.1: Context API
-## **bai-thuc-hanh-1. RestaurantUI
+## **bai-thuc-hanh-1: RestaurantUI
+## **bai-thuc-hanh-2. RestaurantUI-2 ngày 19/03/2026
