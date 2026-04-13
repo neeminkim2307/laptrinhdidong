@@ -14,11 +14,10 @@ export default function Login({ navigation }) {
       <Text style={styles.label}>Password</Text>
       <TextInput style={styles.input} secureTextEntry={true} placeholder="********" />
       
-      <TouchableOpacity style={{alignItems: 'flex-end', marginBottom: 30}}>
-        <Text style={styles.forgot}>Forgot Password?</Text>
-      </TouchableOpacity>
-      
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity 
+        style={styles.btn} 
+        onPress={() => navigation.navigate('Home')} // Thêm dòng này để chuyển màn hình
+      >
         <Text style={styles.btnText}>Log In</Text>
       </TouchableOpacity>
       
