@@ -15,6 +15,10 @@ import Home from './Screens/Home';
 import ProductDetail from './Screens/ProductDetail';
 import Explore from './Screens/Explore';
 import Beverages from './Screens/Beverages';
+import Search from './Screens/Search';
+import Filters from './Screens/Filters';
+import Cart from './Screens/Cart';
+import Favorites from './Screens/Favorites';
 
 const Stack = createStackNavigator();
 
@@ -43,7 +47,14 @@ export default function App() {
         <Stack.Screen name="Explore" component={Explore} />
         <Stack.Screen name="Beverages" component={Beverages} />
         <Stack.Screen name="ProductDetail" component={ProductDetail} />
-        
+        <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen 
+  name="Filters" 
+  component={Filters} 
+  options={{ presentation: 'modal' }} 
+/>
+        <Stack.Screen name="Cart" component={Cart} />
+        <Stack.Screen name="Favorites" component={Favorites} />
       </Stack.Navigator>
     </NavigationContainer>
   );

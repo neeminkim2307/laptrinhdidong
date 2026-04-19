@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   View, Text, StyleSheet, FlatList, TextInput, 
-  Image, TouchableOpacity, SafeAreaView 
+  Image, TouchableOpacity, SafeAreaView, Alert 
 } from 'react-native';
 import { Feather, Ionicons, Entypo } from '@expo/vector-icons';
 
-// --- DỮ LIỆU DANH MỤC ĐÃ CẬP NHẬT ẢNH ---
+// --- DỮ LIỆU DANH MỤC ---
 const CATEGORIES = [
   { id: '1', title: 'Frash Fruits\n& Vegetable', color: '#EEF8F2', border: '#53B175', image: require('../assets/FrashFruits.png') },
   { id: '2', title: 'Cooking Oil\n& Ghee', color: '#FFF6EE', border: '#F8A44C', image: require('../assets/CookingOil.png') },
@@ -16,6 +16,20 @@ const CATEGORIES = [
 ];
 
 export default function Explore({ navigation }) {
+  const [searchText, setSearchText] = useState('');
+
+  // Hàm xử lý khi nhấn Enter trên bàn phím
+  const handleSearchSubmit = () => {
+    // Kiểm tra nếu nội dung gõ vào là "egg" (không phân biệt hoa thường)
+    if (searchText.toLowerCase().trim() === 'egg') {
+      navigation.navigate('Search');
+    } else if (searchText.trim() === '') {s
+      Alert.alert("Thông báo", "Vui lòng nhập từ khóa tìm kiếm!");
+    } else {
+      Alert.alert("Thông báo", "Thử gõ 'egg' để xem kết quả!");
+    }
+  };
+
   const renderItem = ({ item }) => (
     <TouchableOpacity 
       style={[styles.categoryCard, { backgroundColor: item.color, borderColor: item.border }]}
@@ -32,13 +46,29 @@ export default function Explore({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header Title */}
       <Text style={styles.headerTitle}>Find Products</Text>
       
+      {/* Search Bar */}
       <View style={styles.searchContainer}>
         <Feather name="search" size={20} color="#181725" />
-        <TextInput placeholder="Search Store" style={styles.searchInput} />
+        <TextInput 
+          placeholder="Search Store" 
+          style={styles.searchInput}
+          value={searchText}
+          onChangeText={(text) => setSearchText(text)}
+          onSubmitEditing={handleSearchSubmit} // Sự kiện khi ấn Enter/Search trên bàn phím
+          returnKeyType="search" // Đổi nút Enter thành chữ "Search"
+          autoCorrect={false}
+        />
+        {searchText.length > 0 && (
+          <TouchableOpacity onPress={() => setSearchText('')}>
+            <Ionicons name="close-circle" size={18} color="#7C7C7C" />
+          </TouchableOpacity>
+        )}
       </View>
 
+      {/* Grid Categories List */}
       <FlatList
         data={CATEGORIES}
         renderItem={renderItem}
@@ -60,12 +90,12 @@ export default function Explore({ navigation }) {
           <Text style={[styles.tabLabel, { color: '#53B175' }]}>Explore</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.tabItem}>
+        <TouchableOpacity style={styles.tabItem} onPress={() => navigation.navigate('Cart')}>
           <Ionicons name="cart-outline" size={24} color="#181725" />
           <Text style={styles.tabLabel}>Cart</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.tabItem}>
+        <TouchableOpacity style={styles.tabItem} onPress={() => navigation.navigate('Favorites')}>
           <Ionicons name="heart-outline" size={24} color="#181725" />
           <Text style={styles.tabLabel}>Favourite</Text>
         </TouchableOpacity>
@@ -83,12 +113,27 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   headerTitle: { fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginTop: 20 },
   searchContainer: { 
-    flexDirection: 'row', backgroundColor: '#F2F3F2', 
-    marginHorizontal: 25, borderRadius: 15, padding: 15, 
-    alignItems: 'center', marginTop: 20, marginBottom: 20 
+    flexDirection: 'row', 
+    backgroundColor: '#F2F3F2', 
+    marginHorizontal: 25, 
+    borderRadius: 15, 
+    paddingHorizontal: 15, 
+    height: 52,
+    alignItems: 'center', 
+    marginTop: 20, 
+    marginBottom: 20 
   },
-  searchInput: { marginLeft: 10, fontSize: 16, flex: 1, fontWeight: '600' },
-  listContent: { paddingHorizontal: 20, paddingBottom: 100 },
+  searchInput: { 
+    marginLeft: 10, 
+    fontSize: 16, 
+    flex: 1, 
+    fontWeight: '600', 
+    color: '#181725' 
+  },
+  listContent: { 
+    paddingHorizontal: 17, 
+    paddingBottom: 100 
+  },
   categoryCard: {
     flex: 1,
     margin: 8,
@@ -103,11 +148,21 @@ const styles = StyleSheet.create({
   categoryTitle: { fontSize: 16, fontWeight: 'bold', textAlign: 'center', color: '#181725' },
   
   bottomTab: { 
-    flexDirection: 'row', height: 90, backgroundColor: '#fff', 
-    borderTopLeftRadius: 25, borderTopRightRadius: 25,
-    elevation: 20, shadowColor: '#000', shadowOpacity: 0.1, shadowRadius: 10,
-    paddingHorizontal: 10, justifyContent: 'space-around', alignItems: 'center',
-    position: 'absolute', bottom: 0, width: '100%'
+    flexDirection: 'row', 
+    height: 90, 
+    backgroundColor: '#fff', 
+    borderTopLeftRadius: 25, 
+    borderTopRightRadius: 25,
+    elevation: 20, 
+    shadowColor: '#000', 
+    shadowOpacity: 0.1, 
+    shadowRadius: 10,
+    paddingHorizontal: 10, 
+    justifyContent: 'space-around', 
+    alignItems: 'center',
+    position: 'absolute', 
+    bottom: 0, 
+    width: '100%'
   },
   tabItem: { alignItems: 'center' },
   tabLabel: { fontSize: 12, marginTop: 5, fontWeight: '600' }
