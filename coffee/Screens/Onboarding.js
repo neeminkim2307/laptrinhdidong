@@ -6,11 +6,10 @@ import {
 
 export default function Onboarding({ navigation }) {
   // --- HÀM XỬ LÝ SỰ KIỆN NHẤN NÚT "GET STARTED" ---
-  const handleGetStarted = () => {
-    // Khi nhấn nút, sẽ điều hướng người dùng sang màn hình "Login" hoặc "HomeScreen"
-    // Lưu ý: "Login" là tên màn hình bạn sẽ khai báo trong AppNavigator.js sau này
-    // navigation.navigate('Login'); 
-    console.log("Nút Get Started đã được nhấn!");
+const handleGetStarted = () => {
+    // Lệnh điều hướng sang màn hình có tên là 'Home' (đã đặt ở App.js)
+    navigation.navigate('Home'); 
+    console.log("Đang chuyển sang màn hình Home...");
   };
 
   return (

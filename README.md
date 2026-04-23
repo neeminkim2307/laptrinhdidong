@@ -9,4 +9,5 @@
 ## **bai-thuc-hanh-1: RestaurantUI
 ## **bai-thuc-hanh-2: RestaurantUI-2 ngày 19/03/2026
 ## **bai-thuc-hanh-1,2: Nectar
-## **bai-thuc-hanh Nectar, Ngày 19/07 phần 3.
+## **bai-thuc-hanh Nectar, Ngày 19/07 phần 3
+## **bai-thuc-hanh final Coffee shop 23/04.
